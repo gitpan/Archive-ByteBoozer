@@ -1,7 +1,7 @@
 #ifndef _file_h_
 #define _file_h_
 
-#include "BB.h"
+#include "bb.h"
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -13,7 +13,7 @@ typedef struct {
 } File;
 
 void freeFile(File *aFile);
-bool readFile(File *aFile, const char *fileName);
-bool writeFile(File *aFile, const char *fileName);
+boolean readFile(File *aFile, const char *fileName);
+boolean writeFile(File *aFile, const char *fileName);
 
 #endif // _file_h_
