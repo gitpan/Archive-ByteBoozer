@@ -7,6 +7,6 @@
 #include "bb.h"
 #include "file.h"
 
-boolean crunch(File *aSource, File *aTarget, uint startAdress, uint decrFlag, boolean isRelocated);
+_bool crunch(File *aSource, File *aTarget, uint startAdress, uint decrFlag, _bool isRelocated);
 
 #endif // _cruncher_h_

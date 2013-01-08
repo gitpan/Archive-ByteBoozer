@@ -15,12 +15,12 @@ uint ibufSize;
 int get; //points to in[]
 uint put; //points to out[]
 
-boolean copyFlag;
+_bool copyFlag;
 byte curByte;
 byte curCnt;
 uint plainLen;
 
-boolean errorFlag;
+_bool errorFlag;
 
 #define cleanDecrLen 0x110
 byte cleanDecrCode[cleanDecrLen] = {
@@ -115,7 +115,7 @@ inline void out(byte b)
     if(put == 0) {
       printf("Error (C-1): Packed file too large.\n");
       put = memSize - 1; // Avoid more damage..
-      errorFlag = true;
+      errorFlag = _true;
     }
     --put;
 
@@ -148,14 +148,14 @@ inline void outCopyFlag()
   }
 }
 
-boolean scan(uint *theMatchLen, uint *theMatchOffset)
+_bool scan(uint *theMatchLen, uint *theMatchOffset)
 {
   uint scn;
   uint matchLen = 0;
   uint matchOffset = 0;
 
   if(get < 2) {
-    return false;
+    return _false;
   }
 
   scn = get - 1;
@@ -186,10 +186,10 @@ boolean scan(uint *theMatchLen, uint *theMatchOffset)
      ((matchLen == 2) && (matchOffset <= max_offs_short))) {
     *theMatchLen = matchLen;
     *theMatchOffset = matchOffset;
-    return true;
+    return _true;
   }
   else {
-    return false;
+    return _false;
   }
 }
 
@@ -260,7 +260,7 @@ void flush()
     if(put < len) {
       printf("Error (C-2): Packed file too large.\n");
       put = memSize - 1; // Avoid more damage..
-      errorFlag = true;
+      errorFlag = _true;
     }
 
     // Copy the data.
@@ -282,31 +282,31 @@ void flush()
 }
 
 
-boolean crunch(File *aSource, File *aTarget, uint startAdress, uint theDecrType, boolean isRelocated)
+_bool crunch(File *aSource, File *aTarget, uint startAdress, uint theDecrType, _bool isRelocated)
 {
   uint i;
   uint theMatchLen, theMatchOffset; 
   uint packLen, decrLen;
   byte *target;
-  boolean attachDecr;
+  _bool attachDecr;
 
-  errorFlag = false;
+  errorFlag = _false;
 
   switch(theDecrType) {
   case noDecr:
-    attachDecr = false;
+    attachDecr = _false;
     decrLen = 0;
     break;
   case normalDecr:
-    attachDecr = true;
+    attachDecr = _true;
     decrLen = normalDecrLen;
     break;
   case cleanDecr:
-    attachDecr = true;
+    attachDecr = _true;
     decrLen = cleanDecrLen;
     break;
   case loadInitDecr:
-    attachDecr = true;
+    attachDecr = _true;
     decrLen = loadInitDecrLen;
     break;
   }
@@ -338,8 +338,8 @@ boolean crunch(File *aSource, File *aTarget, uint startAdress, uint theDecrType,
   };
   flush();
 
-  if(errorFlag == true) {
-    return false;
+  if(errorFlag == _true) {
+    return _false;
   }
 
   //Copy obuf into aTarget!!
@@ -353,7 +353,7 @@ boolean crunch(File *aSource, File *aTarget, uint startAdress, uint theDecrType,
   aTarget->data = (byte *)malloc(aTarget->size);
   if(aTarget->data == NULL) {
     printf("Error (C-3): Out of memory.\n");
-    return false;
+    return _false;
   }
 
   target = aTarget->data + decrLen + 2;
@@ -439,5 +439,5 @@ boolean crunch(File *aSource, File *aTarget, uint startAdress, uint theDecrType,
 
   free(ibuf);
 
-  return true;
+  return _true;
 }

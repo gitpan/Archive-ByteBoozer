@@ -12,7 +12,7 @@
 #define uint unsigned int
 #endif
 
-typedef enum { false = 0, true = 1 } boolean;
+typedef enum { _false = 0, _true = 1 } _bool;
 typedef enum {
   noDecr = 0,
   cleanDecr,

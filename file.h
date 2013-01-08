@@ -13,7 +13,7 @@ typedef struct {
 } File;
 
 void freeFile(File *aFile);
-boolean readFile(File *aFile, const char *fileName);
-boolean writeFile(File *aFile, const char *fileName);
+_bool readFile(File *aFile, const char *fileName);
+_bool writeFile(File *aFile, const char *fileName);
 
 #endif // _file_h_
