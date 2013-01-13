@@ -1,10 +1,12 @@
 #ifndef _file_h_
 #define _file_h_
 
-#include "bb.h"
+// #include "bb.h"
 
 #include <stdio.h>
 #include <sys/stat.h>
+
+#include "bb.h"
 
 typedef struct {
   char *name;

@@ -4,8 +4,8 @@
 #include <strings.h>
 #include <stdlib.h>
 
-#include "bb.h"
-#include "file.h"
+#include "file.h" // #include "bb.h"
+#include "bb.h" // #include "file.h"
 
 _bool crunch(File *aSource, File *aTarget, uint startAdress, uint decrFlag, _bool isRelocated);
 
